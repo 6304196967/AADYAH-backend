@@ -71,7 +71,7 @@ UserRouter.post('/signin', async (req, res) => {
         const token = jwt.sign({ id: user._id.toString(), role: user.role }, JWT_USER_SECRET);
 
         // Send role along with token
-        res.json({ token, role: user.role });
+        res.json({ token, role: user.role ,username: user.username, });
 
     } catch (e) {
         console.error("Signin Error:", e);

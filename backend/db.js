@@ -58,28 +58,38 @@ const internSchema = new mongoose.Schema({
 });
 
 const ExamScheduleSchema = new mongoose.Schema({
-  year: String,
-  branch: String,
-  exams: [
-    {
-      subject: String,
-      date: String,
-      time: String,
-    },
-  ],
-});
+  year: { type: String, required: true, enum: ['1st', '2nd', '3rd', '4th'] },
+  branch: { type: String, required: true, enum: ['CSE', 'ECE', 'EEE', 'MECH','CIVIL','MME','CHEM'] },
+  exams: [{
+    subject: { type: String, required: true },
+    subjectCode: { type: String, required: true },
+    startTime: { type: String, required: true },
+    endTime: { type: String, required: true },
+    date: { type: Date, required: true },
+    time: { type: String, required: true }
+  }]
+}, { timestamps: true });
 
 const TimeTableSchema = new mongoose.Schema({
-  day: String,
-  subject: String,
-  time: String,
-  faculty: String,
-});
+  year: { type: String, required: true, enum: ['1st', '2nd', '3rd', '4th'] },
+  branch: { type: String, required: true, enum: ['CSE', 'ECE', 'EEE', 'MECH','CIVIL','MME','CHEM'] },
+  section: { type: String, required: true, enum: ['A', 'B', 'C','D','E'] },
+  schedule: [{
+    day: { type: String, required: true, enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] },
+    subject: { type: String, required: true },
+    time: { type: String, required: true },
+    faculty: { type: String, required: true }
+  }]
+}, { timestamps: true });
 
 const notificationSchema = new mongoose.Schema({
-    data : String},
-    {timestamps :true
-});
+  sentBy: { type: String, required: true },
+  role: { type: String, required: true },
+title: { type: String, required: true },
+  description: { type: String, required: true },
+  imageBase64: { type: String }, // Base64 encoded image
+  createdAt: { type: Date, default: Date.now }}
+);
 
 const ExamSchedule = mongoose.model("ExamSchedule", ExamScheduleSchema);
 const TimeTable = mongoose.model("TimeTable", TimeTableSchema);

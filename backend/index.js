@@ -22,7 +22,7 @@ app.use("/api/noti", notificationRouter);
 
 async function main() {
     try {
-        await mongoose.connect("mongodb+srv://admin:M8Ka9GxEjWaNb9kl@cluster0.lphgo.mongodb.net/aadhya");
+        await mongoose.connect("mongodb+srv://r210387:tdUaskqu2m4lrFKI@cluster0.zpvznpc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
         console.log('Connected to MongoDB');
 
         app.listen(3000, () => {
