@@ -2,7 +2,6 @@ const { Router } = require("express");
 const { notificationModel } = require("./db");
 const multer = require("multer");
 const path = require("path");
-const { TiLeaf } = require("react-icons/ti");
 
 const notificationRouter = Router();
 
